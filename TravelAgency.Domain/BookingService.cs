@@ -8,6 +8,8 @@ public class BookingService : ITourReader, IBookingManager
     private readonly List<Tour> _tours = new();
     private readonly List<Booking> _bookings = new();
 
+    public event EventHandler<BookingEventArgs>? OnBookingCreated;
+
     public BookingService()
     {
         var route1 = new Route();
@@ -32,6 +34,9 @@ public class BookingService : ITourReader, IBookingManager
 
         var booking = new Booking(tourist, tour);
         _bookings.Add(booking);
+
+        OnBookingCreated?.Invoke(this, new BookingEventArgs(booking));
+
         return booking;
     }
 
