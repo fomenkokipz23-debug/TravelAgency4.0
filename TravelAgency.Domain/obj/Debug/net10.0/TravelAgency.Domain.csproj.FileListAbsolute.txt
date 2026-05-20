@@ -1,0 +1,12 @@
+D:\TravelAgency4.0\TravelAgency.Domain\bin\Debug\net10.0\TravelAgency.Domain.deps.json
+D:\TravelAgency4.0\TravelAgency.Domain\bin\Debug\net10.0\TravelAgency.Domain.dll
+D:\TravelAgency4.0\TravelAgency.Domain\bin\Debug\net10.0\TravelAgency.Domain.pdb
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.AssemblyInfoInputs.cache
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.AssemblyInfo.cs
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.csproj.CoreCompileInputs.cache
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.sourcelink.json
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.dll
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\refint\TravelAgency.Domain.dll
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\TravelAgency.Domain.pdb
+D:\TravelAgency4.0\TravelAgency.Domain\obj\Debug\net10.0\ref\TravelAgency.Domain.dll
