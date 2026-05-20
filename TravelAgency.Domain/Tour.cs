@@ -48,4 +48,9 @@ public class Tour
             TourRoute = TourRoute + city;
         }
     }
+
+    public virtual decimal GetPrice()
+    {
+        return BasePrice;
+    }
 }
