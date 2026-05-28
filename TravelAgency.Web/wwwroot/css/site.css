@@ -1,31 +1,62 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    background-color: #fcfbfe;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.text-purple { 
+    color: #6f42c1 !important; 
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.btn-purple { 
+    background-color: #6f42c1 !important; 
+    color: #ffffff !important; 
+    border: none;
+    transition: background-color 0.2s ease-in-out;
+}
+.btn-purple:hover { 
+    background-color: #59359a !important; 
+}
+
+.btn-outline-purple { 
+    border-color: #6f42c1 !important; 
+    color: #6f42c1 !important; 
+    background-color: transparent !important;
+    transition: all 0.2s ease-in-out;
+}
+.btn-outline-purple:hover { 
+    background-color: #6f42c1 !important; 
+    color: #ffffff !important; 
+}
+
+.border-purple { 
+    border-color: #e2d9f3 !important; 
+}
+
+.tour-card {
+    border: 1px solid #e2d9f3 !important;
+    border-radius: 12px !important;
+    background-color: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tour-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(111, 66, 193, 0.08) !important;
+}
+
+.form-select-purple {
+    border: 1px solid #e2d9f3 !important;
+    border-radius: 6px;
+}
+.form-select-purple:focus {
+    border-color: #6f42c1 !important;
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.15) !important;
+}
+
+.form-check-input:checked {
+    background-color: #6f42c1 !important;
+    border-color: #6f42c1 !important;
 }

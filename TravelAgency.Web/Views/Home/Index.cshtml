@@ -1,8 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IReadOnlyList<TravelAgency.Domain.Tour>
+@{
+    ViewData["Title"] = "Каталог подорожей";
+    DateTime today = DateTime.Today;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5" style="max-width: 1140px;">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold" style="color: #2D1A4D; letter-spacing: -1px;">Оберіть свій тур</h1>
+    </div>
+
+    <div class="row g-4">
+        @{ int index = 0; }
+        @foreach (var tour in Model)
+        {
+            DateTime departureDate = today.AddDays(3 + index * 2);
+            int durationDays = (tour.BasePrice > 8000m) ? 7 : 4;
+            DateTime arrivalDate = departureDate.AddDays(durationDays);
+            index++;
+
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 p-2 tour-card" style="background: #ffffff; border-radius: 16px; box-shadow: 0 4px 24px rgba(111, 66, 193, 0.04);">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h2 class="h4 mb-0 fw-bold" style="color: #2D1A4D;">@tour.Name.Split('(')[0].Trim()</h2>
+                                
+                                @if(tour.Name.Contains("Акція")) { 
+                                    <span class="badge px-3 py-2 text-danger bg-light" style="border-radius: 30px;">Акція -20%</span> 
+                                }
+                                else if(tour.Name.Contains("пік")) { 
+                                    <span class="badge px-3 py-2 text-warning bg-light" style="border-radius: 30px;">Піковий сезон</span> 
+                                }
+                                else { 
+                                    <span class="badge px-3 py-2 text-secondary bg-light" style="border-radius: 30px;">Стандарт</span> 
+                                }
+                            </div>
+                            
+                            <p class="text-secondary small mb-3">Маршрут: <span class="text-dark fw-medium">@tour.TourRoute.GetFullRouteString()</span></p>
+                            
+                            <div class="p-3 mb-3" style="background: #F9F7FD; border-radius: 12px;">
+                                <span class="small text-muted d-block mb-1">Найближчий виїзд:</span>
+                                <span class="fw-bold text-dark">@departureDate.ToString("dd.MM.yyyy") - @arrivalDate.ToString("dd.MM.yyyy") (@durationDays дн.)</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center pt-3 mt-2 border-top" style="border-color: #F0EAFB !important;">
+                            <div>
+                                <span class="text-muted small d-block">Базова ціна:</span>
+                                <span class="fs-4 fw-bold text-purple">@tour.BasePrice <span class="fs-6 fw-normal text-muted">грн</span></span>
+                            </div>
+                            <a href="/Home/Details?tourName=@tour.Name" class="btn btn-purple px-4 py-2" style="border-radius: 10px; font-weight: 600;">
+                                Переглянути тур
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

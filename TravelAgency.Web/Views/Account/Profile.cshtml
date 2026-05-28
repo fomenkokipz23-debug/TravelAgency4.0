@@ -1,0 +1,83 @@
+@model List<TravelAgency.Domain.Tour>
+@{
+    ViewData["Title"] = "Мій акаунт";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 shadow-sm border-0 text-center" style="background-color: #fbf9ff; border-radius: 8px; border-top: 4px solid #6f42c1 !important;">
+                <div class="mb-3">
+                    <span style="font-size: 4rem;">👤</span>
+                </div>
+                <h4 class="text-purple" style="font-weight: 700;">@ViewBag.UserName</h4>
+                <p class="text-muted small">@ViewBag.UserEmail</p>
+                <hr style="color: #6f42c1;" />
+                <div class="d-grid">
+                    <a class="btn btn-outline-danger btn-sm" style="border-radius: 20px; font-weight: 600;" asp-controller="Account" asp-action="Logout">Вийти з акаунта</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h3 class="mb-4 text-purple" style="font-weight: 600;">Мої замовлені подорожі</h3>
+
+            @if (Model == null || Model.Count == 0)
+            {
+                <div class="alert alert-light text-center p-4 border shadow-sm" style="border-radius: 8px; border-color: #e2d9f3 !important;">
+                    <h5>У вас поки немає вибраних турів.</h5>
+                    <p class="mb-0 text-muted">Перейдіть на головну сторінку та сконструюйте свій перший тур.</p>
+                    <a href="/" class="btn btn-purple btn-sm mt-3 px-4" style="border-radius: 20px; font-weight: 600;">До каталогу турів</a>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var tour in Model)
+                    {
+                        var currentBooking = TravelAgency.Domain.AgencyRegistry.Instance.BookingService
+                            .GetActiveBookings()
+                            .ToList()
+                            .FirstOrDefault(b => b.SelectedTour.Id == tour.Id && b.Tourist.Email == ViewBag.UserEmail);
+
+                        <div class="col-12 mb-3">
+                            <div class="card shadow-sm border-start border-purple border-4 p-3 h-100" style="border-color: #6f42c1 !important; border-radius: 8px;">
+                                <div class="card-body p-1">
+                                    
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h5 class="card-title text-purple mb-0" style="font-weight: 700;">
+                                            @tour.Name.Split('(')[0].Trim()
+                                        </h5>
+                                        
+                                        @if (currentBooking != null)
+                                        {
+                                            <form asp-controller="Account" asp-action="CancelBooking" method="post" onsubmit="return confirm('Ви впевнені, що хочете скасувати це領бронювання?');">
+                                                <input type="hidden" name="bookingId" value="@currentBooking.Id.ToString()" />
+                                                <button type="submit" class="btn btn-sm btn-outline-danger px-3" style="border-radius: 20px; font-weight: 600;">
+                                                    Скасувати тур
+                                                </button>
+                                            </form>
+                                        }
+                                    </div>
+                                    
+                                    @if(tour.Name.Contains("("))
+                                    {
+                                        <p class="small text-muted my-2 bg-light p-2 rounded" style="font-family: monospace; border-left: 2px solid #6f42c1; margin-top: 10px !important;">
+                                            Конфігурація: @tour.Name.Substring(tour.Name.IndexOf('('))
+                                        </p>
+                                    }
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top" style="border-color: #f0eafb !important;">
+                                        <span class="text-secondary small"><strong>Маршрут:</strong> @tour.TourRoute.GetFullRouteString()</span>
+                                        <span class="badge btn-purple fs-6 px-3 py-2" style="border-radius: 20px;">@tour.BasePrice грн</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

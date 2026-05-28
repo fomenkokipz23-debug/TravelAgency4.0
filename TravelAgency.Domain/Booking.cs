@@ -13,8 +13,10 @@ public class Booking : IDisposable
     public Booking(Client tourist, Tour selectedTour)
     {
         Id = Guid.NewGuid();
-        Tourist = new Client(tourist);
-        SelectedTour = new Tour(selectedTour);
+        
+        Tourist = tourist;
+        SelectedTour = selectedTour;
+        
         BookingDate = DateTime.Now;
     }
 

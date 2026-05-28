@@ -39,6 +39,6 @@ public class Route
 
     public string GetFullRouteString()
     {
-        return _cities.Count == 0 ? "Маршрут порожній" : string.Join(" ➡️ ", _cities);
+        return _cities.Count == 0 ? "Маршрут порожній" : string.Join(" ➢ ", _cities);
     }
 }

@@ -1,0 +1,36 @@
+@model TravelAgency.Web.Models.UserRegistrationDto
+@{
+    ViewData["Title"] = "Реєстрація";
+}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-4 shadow border-0" style="max-width: 450px; width: 100%; border-radius: 8px; background-color: #fbf9ff; border-top: 4px solid #6f42c1 !important;">
+        <h2 class="text-center text-purple mb-4" style="font-weight: 600;">Реєстрація у системі</h2>
+        
+        <form asp-action="Register" method="post">
+            <div class="text-danger small mb-3" asp-validation-summary="ModelOnly"></div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label" style="font-weight: 500;">Ваше ім'я</label>
+                <input asp-for="Name" class="form-control border-purple" placeholder="Катерина" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label" style="font-weight: 500;">Електронна пошта</label>
+                <input asp-for="Email" class="form-control border-purple" placeholder="kateryna@email.com" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3 text-start">
+                <label class="form-label" style="font-weight: 500;">Пароль</label>
+                <input asp-for="Password" type="password" class="form-control border-purple" placeholder="******" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-purple w-100 py-2 mt-3" style="font-weight: 500;">
+                Зареєструватися та увійти
+            </button>
+        </form>
+    </div>
+</div>

@@ -7,15 +7,11 @@ public class CulinaryTour : Tour
     public int TastingsCount { get; set; }
     public decimal PricePerTasting { get; set; }
 
-    public CulinaryTour(string name, decimal basePrice, Route route, int tastingsCount, decimal pricePerTasting)
-        : base(name, basePrice, route)
+    public CulinaryTour(string name, decimal basePrice, Route tourRoute, int tastingsCount, decimal pricePerTasting) 
+        : base(name, basePrice, tourRoute)
     {
         TastingsCount = tastingsCount;
         PricePerTasting = pricePerTasting;
     }
-
-    public override decimal GetPrice()
-    {
-        return BasePrice + (TastingsCount * PricePerTasting);
-    }
+    
 }
